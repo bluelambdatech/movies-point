@@ -29,6 +29,6 @@ def factorial(num):
 # 5 * 4 * 3 * factorial(2)
 
 # 5 * 4 * 3 * 2 * 1
-
-num = input("Please, enter the value: ")
-print(factorial(int(num)))
+#
+# num = input("Please, enter the value: ")
+# print(factorial(int(num)))
