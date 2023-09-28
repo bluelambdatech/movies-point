@@ -89,8 +89,8 @@ def get_conn():
     # conn = pyodbc.connect(connection_string, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})
     server = 'mysqlserver1414.database.windows.net'
     database = 'mySampleDatabase'
-    username = 'azureuser'
-    password = '{Nkem1414#}'
+    username = '******'
+    password = '{*****}'
     driver = '{ODBC Driver 18 for SQL Server}'
 
     conn = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)

@@ -6,7 +6,7 @@ import os  #imports python modules os for environment variables
 #creating a connection string that contains info about the azure sql database i want to connect to including server address
 #database name , authentication credentials
 
-AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:mysqlserver1414.database.windows.net,1433;Database=mySampleDatabase;Uid=azureuser;Pwd=Nkem1414#;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:mysqlserver1414.database.windows.net,1433;Database=mySampleDatabase;Uid=*****;Pwd=*****;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
 
 os.environ["AZURE_SQL_CONNECTIONSTRING"] = AZURE_SQL_CONNECTIONSTRING  #sets environment variable and assigns the connection string to an environment variable named AZURE_SQL ***
 
@@ -20,9 +20,9 @@ print(os.environ.get('APPDATA'))
 
 import pyodbc
 server = 'mysqlserver1414.database.windows.net'  #insert your azure server name
-database = '******'    #insert your sql database name
-username = '****************' # enter your user name
-password = '{***********}'  #enter your password
+database = 'mySampleDatabase'    #insert your sql database name
+username = '******' # enter your user name
+password = '{****}'  #enter your password
 driver= '{ODBC Driver 18 for SQL Server}'
 
 
