@@ -1,6 +1,6 @@
 import pypyodbc as odbc
 import pandas as pd
-from credentials import username, password
+from credential import username, password
 
 # variables 
 server = 'moviessqlserver.database.windows.net'
