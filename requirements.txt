@@ -1,0 +1,6 @@
+pyodbc
+azure-identity
+pypyodbc
+pandas
+
+
