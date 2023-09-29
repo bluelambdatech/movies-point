@@ -18,16 +18,17 @@ conn_string = (
     "Connection Timeout=60;")
 
 
-# function to connect to sql db
+# This function connects to the sql db
 def get_conn():
     ''' function to connect to sql db'''
     conn = odbc.connect(conn_string)
     return conn
 
 test_conn = get_conn()
-print('connection successful')
+print('SQL db connection successful')
 
 
+# this function creates a table in the db
 def create_person_table():
     """ Table should be created here. """
     print("Creating a Table...")
@@ -44,11 +45,33 @@ def create_person_table():
         conn.commit()
         return conn
     except Exception as e:
-        # Table may already exist
+        # Items may already exist
         print(e)
     return "Person API"
 
 test_create = create_person_table()
-print('Function exceution completed')
+print('Table create function completed')
 
 
+# this function inserts items into the table(s)
+def insert_person():
+    try:
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SET IDENTITY_INSERT Persons ON
+            INSERT INTO Persons (
+                ID, FirstName, LastName) 
+                VALUES (1, 'Collins', 'Orighose');
+                SET IDENTITY_INSERT Persons OFF
+                """)
+        conn.commit()
+        return conn
+    except Exception as e:
+        # Table may already exist
+        print(e)
+    return "Person API"
+
+test_insert = insert_person()
+print("Table insert function completed")
