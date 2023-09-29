@@ -75,3 +75,19 @@ def insert_person():
 
 test_insert = insert_person()
 print("Table insert function completed")
+
+# this function reads from the db
+def get_persons():
+    rows = []
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Persons")
+    for row in cursor.fetchall():
+        print(row.FirstName, row.LastName)
+        rows.append(f"{row.ID}, {row.FirstName}, {row.LastName}")
+    return rows
+
+test_get_persons = get_persons()
+print(test_get_persons)
+print("Get persons function completed")
+
