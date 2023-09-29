@@ -1,13 +1,13 @@
 import pypyodbc as odbc
-#import pandas as pd
-from credentials import username, password 
+import pandas as pd
+from credentials import username, password
 
 # variables 
-server = 'moviessqlserver.database.windows.net' 
+server = 'moviessqlserver.database.windows.net'
 database = 'movieslist'
 odbc_driver = '{ODBC Driver 18 for SQL Server}'
 
-conn_str = (
+conn_string = (
     f"Driver={odbc_driver};"
     f"Server=tcp:{server},1433;"
     f"Database={database};"
@@ -19,11 +19,10 @@ conn_str = (
 
 
 # function to connect to sql db
-def conn(value):
+def get_conn():
     ''' function to connect to sql db'''
-    odbc.connect(value)
-    print(conn)
+    conn = odbc.connect(conn_string)
     return conn
 
-sql_conn = conn(conn_str)
-
+sql_conn = get_conn()
+print(sql_conn)
