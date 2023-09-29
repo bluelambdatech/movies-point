@@ -24,5 +24,31 @@ def get_conn():
     conn = odbc.connect(conn_string)
     return conn
 
-sql_conn = get_conn()
-print(sql_conn)
+test_conn = get_conn()
+print('connection successful')
+
+
+def create_person_table():
+    """ Table should be created here. """
+    print("Creating a Table...")
+    try:
+        conn = get_conn()
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE Persons (
+                ID int NOT NULL PRIMARY KEY IDENTITY,
+                FirstName varchar(255),
+                LastName varchar(255)
+            );
+        """)
+        conn.commit()
+        return conn
+    except Exception as e:
+        # Table may already exist
+        print(e)
+    return "Person API"
+
+test_create = create_person_table()
+print('Function exceution completed')
+
+
