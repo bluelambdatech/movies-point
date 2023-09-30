@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h3>Search for Movie(s)</h3>
+    <div class="container">
+        <form class="ui form" action="/search_movie" method="post">
+            <div class="field">
+                <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td><label>Movie Name</label></td>
+                        <td><input type="text" name="movie_name" placeholder="Movie name" required style="width:200px"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Producer Name</label></td>
+                        <td><input type="text" name="producer_name" placeholder="Producer name" style="width:200px"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Date Released</label></td>
+                        <td><input type="date"  name="release_date" placeholder="Date Released" style="width:200px"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Rating</label></td>
+                        <td><input type="number"  name="rating" placeholder="Rating" style="width:200px"></td>
+                    </tr>
+                </table>
+            </div>
+            <button class="ui blue button" type="submit">Submit</button>
+
+        </form>
+    </div>
+</body>
+</html>
+
+
