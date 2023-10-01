@@ -36,13 +36,19 @@ def create_person_table():
         conn = get_conn()
         cursor = conn.cursor()
         cursor.execute("""
-            CREATE TABLE Persons (
+            CREATE TABLE User_Profile (
                 ID int NOT NULL PRIMARY KEY IDENTITY,
-                FirstName varchar(255),
-                LastName varchar(255)
+                LastName varchar(255) NULL,
+                FirstName varchar(255) NULL,
+                Email varchar(255) NOT NULL,
+                UserName varchar(255) NOT NULL,
+                DateOfBirth varchar(50),
+                Gender varchar(50),
+            CONSTRAINT UC_User_Profile UNIQUE (Email, UserName)
             );
         """)
         conn.commit()
+        return conn
         return conn
     except Exception as e:
         # Items may already exist
