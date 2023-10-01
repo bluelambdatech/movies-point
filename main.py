@@ -25,7 +25,7 @@ def get_conn():
     return conn
 
 test_conn = get_conn()
-print('SQL db connection successful')
+print('1. SQL db connection successful')
 
 
 # this function creates a table in the db
@@ -56,21 +56,21 @@ def create_person_table():
     return "Person API"
 
 test_create = create_person_table()
-print('Table create function completed')
+print('2. Table create function completed')
 
 
 # this function inserts items into the table(s)
-def insert_person():
+def insert_table():
     try:
         conn = get_conn()
         cursor = conn.cursor()
         cursor.execute(
             """
-            SET IDENTITY_INSERT Persons ON
-            INSERT INTO Persons (
-                ID, FirstName, LastName) 
-                VALUES (1, 'Collins', 'Orighose');
-                SET IDENTITY_INSERT Persons OFF
+            SET IDENTITY_INSERT User_Profile ON
+            INSERT INTO User_Profile (
+                ID, LastName, FirstName, Email, UserName, DateOfBirth, Gender)
+                VALUES (1, 'Doe', 'John', johndoe@aol.com, johndoe123, 01-10-1960, Male);
+                SET IDENTITY_INSERT User_Profile OFF
                 """)
         conn.commit()
         return conn
@@ -79,8 +79,24 @@ def insert_person():
         print(e)
     return "Person API"
 
-test_insert = insert_person()
-print("Table insert function completed")
+test_insert = insert_table()
+print('3. Table insert function completed')
+
+def alter_table():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        ALTER TABLE User_Profile  
+            ADD CONSTRAINT UC_User_Profile UNIQUE (Email, UserName);
+            
+            """)
+    conn.commit()
+    return conn
+
+
+test_alter = alter_table()
+print("4. Table alter function completed")
 
 # this function reads from the db
 def get_persons():
@@ -90,6 +106,6 @@ def get_persons():
 
 df = get_persons()
 print(df)
-print("4. Get persons function completed....")
+print("5. Get persons function completed....")
 
 
