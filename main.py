@@ -22,3 +22,15 @@ async def register_response(request: Request, email: str = Form(...),
                             psw: str = Form(...), psw_repeat: str = Form(...)
                             ):
     print(email, psw, psw_repeat)
+
+
+@app.get("/forgot_password", response_class=HTMLResponse)
+def forgot_password(request:Request):
+    return templates.TemplateResponse("forgot_password.html", {"request": request})
+
+
+@app.post("/forgot_password")
+async def password(request: Request, email: str = Form(...),
+                   username: str = Form(...)):
+
+    return "If your email is registered with us, a reset password email will be sent to you"
