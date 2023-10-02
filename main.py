@@ -1,7 +1,9 @@
-import pypyodbc as odbc
+import os
+import pyodbc as odbc
 import pandas as pd
 from credential import username, password
 
+os.environ['LD_LIBRARY_PATH'] = os.getcwd()
 # variables 
 server = 'moviessqlserver.database.windows.net'
 database = 'movieslist'
