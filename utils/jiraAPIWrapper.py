@@ -28,7 +28,7 @@ class JiraAPI:
         return cls(url=url, user=user_name, token=token)
 
     def __init__(self, url, user, token):
-        self.client = JIRA("https://bluelambdatechnologies.atlassian.net", basic_auth=(user,token))
+        self.client = JIRA(url, basic_auth=(user, token))
 
         #print(self.client.search_issues("project=MOVIES"))
         #print(self.client.createmeta("MOVIES"))
