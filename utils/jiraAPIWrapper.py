@@ -23,9 +23,7 @@ class JiraAPI:
         token = os.getenv("jira_token")
         user_name = os.getenv("jira_user_name")
 
-        url = f"{base_url}?jql=project={project_key}"
-
-        return cls(url=url, user=user_name, token=token)
+        return cls(url=base_url, user=user_name, token=token)
 
     def __init__(self, url, user, token):
         self.client = JIRA(url, basic_auth=(user, token))
