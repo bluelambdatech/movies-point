@@ -51,20 +51,32 @@ class JiraAPI:
                 }
             }
 
+    def get_projects(self):
+        projects_list = []
         # print(self.client.projects())
-        # for prj in self.client.projects():
-        #     print(type(prj.key))
+        for prj in self.client.projects():
+            projects_list.append(prj.key)
 
+        return projects_list
+
+    def get_issue(self, issueName):
         # get an issue to update
         # issue = self.client.issue("MOVIES-1")
         # print(issue)
         #
-        # self.client.add_comment(issue, "Comment text")
+        pass
+
+    def add_comment(self, issueName, comment, description):
+        self.client.add_comment(issueName, comment)
         # print(self.client.get_all_custom_fields())
-        print(self.client.issue("MOVIES-1").id)
+        #print(self.client.issue("MOVIES-1").id)
+
+    def add_description(self):
+        pass
 
 
 
 moviejira = JiraAPI.create_conn()
 
+moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
 
