@@ -2,13 +2,13 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 import pyodbc
+from utils.credentials import server,database,username,password
 
-load_dotenv()
 
-server = f'{os.getenv("db_name")}.database.windows.net'
-database = os.getenv("db_name")
-username = "bluelambda"
-password = os.getenv("password")
+server = "********"
+database = "********"
+username = "********"
+password = "********"
 driver= '{ODBC Driver 18 for SQL Server}'
 
 
@@ -42,9 +42,9 @@ def insert_into_table(LastName, FirstName, Email, UserName, DateOfBirth, Gender)
     cursor.close()
 
 
-def read_from_table(UserName):
+def read_from_table(UserName , Email):
     cursor = get_conn().cursor()
     print(UserName, "OMOLEWA")
     print(type(UserName))
-    dfm = cursor.execute("SELECT * FROM [MOVIES_POINT].[USER_PROFILE] WHERE UserName = '%s'" % UserName)
+    dfm = cursor.execute("SELECT * FROM [MOVIES_POINT].[USER_PROFILE] WHERE UserName = '%s' AND Email = '%s'" % (UserName , Email))
     return dfm.fetchall()

@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 
 from utils.azure_sql_database import *
 
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
@@ -12,6 +13,19 @@ templates = Jinja2Templates(directory="templates")
 def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
+@app.post("/login")
+async def login_response(request: Request,
+                            username: str = Form(...),
+                            password: str = Form(...),
+                            ):
+
+    try:
+        read_from_table(username,password)
+
+    except:
+        return "User Does Not Exist"
+
+    return
 
 @app.get("/register", response_class=HTMLResponse)
 def register(request: Request):
@@ -44,8 +58,17 @@ def forgot_password(request:Request):
 
 
 @app.post("/forgot_password")
-async def password(request: Request, email: str = Form(...),
-                   username: str = Form(...)):
-    print(username)
-    return read_from_table(username)
+async def password(request: Request, Email: str = Form(...),
+                   Username: str = Form(...)):
+    """
+    Info from User for authentication: username, email
+    Query the database with these two info - send a reset password link to the email provided
+        - look for how to send email with python
+    :param request:
+    :param email:
+    :param username:
+    :return:
+    """
+    print(username, email)
+    return read_from_table(Username , Email)
     #return "If your email is registered with us, a reset password email will be sent to you"
