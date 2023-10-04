@@ -60,6 +60,8 @@ class JiraAPI:
         # print(issue)
         #
         # self.client.add_comment(issue, "Comment text")
+        # print(self.client.get_all_custom_fields())
+        print(self.client.issue("MOVIES-1").id)
 
 
 
