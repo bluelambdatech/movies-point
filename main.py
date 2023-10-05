@@ -2,10 +2,13 @@ from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from fastapi.staticfiles import StaticFiles
+
 from utils.azure_sql_database import *
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+app.mount("/imgs", StaticFiles(directory="imgs"), name='img_avatar2.jpg')
 
 
 @app.get("/login", response_class=HTMLResponse)
