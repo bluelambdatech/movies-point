@@ -1,0 +1,167 @@
+Index: python-sql-azure/app2.py
+===================================================================
+diff --git a/python-sql-azure/app2.py b/python-sql-azure/train.py
+rename from python-sql-azure/app2.py
+rename to python-sql-azure/train.py
+--- a/python-sql-azure/app2.py	
++++ b/python-sql-azure/train.py	
+@@ -1,59 +1,96 @@
+ import os
+ import pyodbc, struct
++import csv
+ from azure import identity
+ 
+ from typing import Union
+ from fastapi import FastAPI
+ from pydantic import BaseModel
+ 
++
+ app = FastAPI()
+ 
++
+ def get_conn():
++
+     server = 'mysqlserver1414.database.windows.net'
+     database = 'mySampleDatabase'
+-    username = '*******'
+-    password = '{******}'
++    username = 'azureuser'
++    password = '{Nkem1414#}'
+     driver = '{ODBC Driver 18 for SQL Server}'
+     conn = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+     return conn
+ 
+ @app.get("/")
+ def root():
+-    print("Root of Person API")
+-    try:
+-        conn = get_conn()
+-        cursor = conn.cursor()
++     print("Root of Person API")
++     try:
++         conn = get_conn()
++         cursor = conn.cursor()
+ 
+-        # Table should be created ahead of time in production app.
+-        cursor.execute("""
+-            CREATE TABLE Movies (
+-                rotten_tomatoes_link,
+-                movie_title varchar(255),
+-               movie_info varchar(255),
+-               critics_consensus varchar(255),
+-               content_rating varchar(255),
+-               genres varchar(255),
+-               directors varchar(255),
+-               authors varchar(255),
+-               actors varchar(255),
+-               original_release_date varchar(255),
+-               streaming_release_date varchar(255),
+-               runtime varchar(255),
+-               production_company varchar(255),
+-               tomatometer_status varchar(255),
+-               tomatometer_rating varchar(255),
+-               tomatometer_count varchar(255),
+-               audience_status varchar(255),
+-               rating varchar(255),
+-               tomatometer_top_critics_count varchar(255),
+-               tomatometer_fresh_critics_count varchar (255),
+-               tomatometer_rotten_critics_count varchar (255)
+-               
+-            );
+-        """)
++         # Table should be created ahead of time in production app.
++         cursor.execute("""
++             CREATE TABLE Movies (
++                 rotten_tomatoes_link varchar(255),
++                 movie_title varchar(255),
++                movie_info varchar(255),
++                critics_consensus varchar(255),
++                content_rating varchar(255),
++                genres varchar(255),
++                directors varchar(255),
++                authors varchar(255),
++                actors varchar(255),
++                original_release_date varchar(255),
++                streaming_release_date varchar(255),
++                runtime varchar(255),
++                production_company varchar(255),
++                tomatometer_status varchar(255),
++                tomatometer_rating varchar(255),
++                tomatometer_count varchar(255),
++                audience_status varchar(255),
++                rating varchar(255),
++                tomatometer_top_critics_count varchar(255),
++                tomatometer_fresh_critics_count varchar (255),
++                tomatometer_rotten_critics_count varchar (255)
++
++             );
++         """)
+ 
+-        conn.commit()
+-    except Exception as e:
+-        # Table may already exist
+-        print(e)
+-    return "Movies API is created"
++         conn.commit()
++     except Exception as e:
++         # Table may already exist
++         print(e)
++     return {"message": "Movies  API is created"}
++
++@app.get("/populate")
++def populate_table():
++    try:
++        conn = get_conn()
++        cursor = conn.cursor()
++
++        with open("C:/Users/nened/Downloads/rotten_tomatoes_movies (1).csv", 'r', newline='', encoding='utf-8') as csv_file:
++            csv_reader = csv.reader(csv_file)
++            next(csv_reader)
++
++            for row in csv_reader:
++                cursor.execute(
++                    "INSERT INTO Movies VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
++                    row
++                )
++
++        conn.commit()
++        return {"message": "Data is inserted into the Movies table"}
++    except Exception as e:
++        return {"error": str(e)}
++
++
++
++
++
++
++
++
++
++
++
++
+Index: python-sql-azure/app.py
+===================================================================
+diff --git a/python-sql-azure/app.py b/python-sql-azure/app.py
+--- a/python-sql-azure/app.py	
++++ b/python-sql-azure/app.py	
+@@ -45,7 +45,7 @@
+     except Exception as e:
+         # Table may already exist
+         print(e)
+-    return "Person API"
++    return "Person API 6555"
+ 
+ 
+ @app.get("/all")
+@@ -89,8 +89,8 @@
+     # conn = pyodbc.connect(connection_string, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})
+     server = 'mysqlserver1414.database.windows.net'
+     database = 'mySampleDatabase'
+-    username = '******'
+-    password = '{*****}'
++    username = 'azureuser'
++    password = '{Nkem1414#}'
+     driver = '{ODBC Driver 18 for SQL Server}'
+ 
+     conn = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)

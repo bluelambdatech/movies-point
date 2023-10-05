@@ -1,0 +1,67 @@
+Index: python-sql-azure/app.py
+===================================================================
+diff --git a/python-sql-azure/app.py b/python-sql-azure/app.py
+--- a/python-sql-azure/app.py	
++++ b/python-sql-azure/app.py	
+@@ -89,8 +89,8 @@
+     # conn = pyodbc.connect(connection_string, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})
+     server = 'mysqlserver1414.database.windows.net'
+     database = 'mySampleDatabase'
+-    username = '******'
+-    password = '{*****}'
++    username = 'azureuser'
++    password = '{Nkem1414#}'
+     driver = '{ODBC Driver 18 for SQL Server}'
+ 
+     conn = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+Index: python-sql-azure/conn_test.py
+===================================================================
+diff --git a/python-sql-azure/conn_test.py b/python-sql-azure/conn_test.py
+--- a/python-sql-azure/conn_test.py	
++++ b/python-sql-azure/conn_test.py	
+@@ -1,18 +1,28 @@
+-import os
++import pypyodbc as odbc
++import pandas as pd
++from credential import username, password
++
++# variables
++server = 'mysqlserver1414.database.windows.net'
++database = 'mySampleDatabase'
++odbc_driver = '{ODBC Driver 18 for SQL Server}'
+ 
+-import pyodbc
+-server = 'mysqlserver1414.database.windows.net'  #insert your azure server name
+-database = '*****'    #insert your sql database name
+-username = '****' # enter your user name
+-password = '{****}'  #enter your password
+-driver= '{ODBC Driver 18 for SQL Server}'
++conn_string = (
++    f"Driver={odbc_driver};"
++    f"Server=tcp:{server},1433;"
++    f"Database={database};"
++    f"Uid={username};"
++    f"Pwd={password};"
++    "Encrypt=yes;"
++    "TrustServerCertificate=no;"
++    "Connection Timeout=60;")
+ 
+ 
+-# establishes connection to azure sql database using pyodbc with the below credentials
+-with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
+-    with conn.cursor() as cursor:
+-        cursor.execute("SELECT TOP (1000) * FROM [SalesLT].[Product]")  # executes SQL query and is retreiving top 1000 rows from the table
+-        row = cursor.fetchone()
+-        while row:
+-            print (str(row[0]) + " " + str(row[1]))  # fetches aand process results row by row and prints data from first 2 columns
+-            row = cursor.fetchone()
+\ No newline at end of file
++# This function connects to the sql db
++def get_conn():
++    ''' function to connect to sql db'''
++    conn = odbc.connect(conn_string)
++    return conn
++
++test_conn = get_conn()
++print('SQL db connection successful')
+\ No newline at end of file
