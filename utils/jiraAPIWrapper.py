@@ -66,6 +66,9 @@ class JiraAPI:
         #
         pass
 
+    def create_issue(self, name, email):
+        pass
+
     def add_comment(self, issueName, comment, description):
         self.client.add_comment(issueName, comment)
         # print(self.client.get_all_custom_fields())
