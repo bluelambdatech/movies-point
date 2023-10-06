@@ -1,0 +1,16 @@
+Index: stressor.py
+===================================================================
+diff --git a/stressor.py b/stressor.py
+new file mode 100644
+--- /dev/null	
++++ b/stressor.py	
+@@ -0,0 +1,8 @@
++from fastapi import FastAPI
++
++app = FastAPI()
++
++@app.get("/")
++def root():
++    print("Root of Movies API")
++    return {"message": "Movies API is running"}
+\ No newline at end of file
