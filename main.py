@@ -2,6 +2,8 @@ from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+import smtplib
+
 from utils.azure_sql_database import *
 from utils.credentials import *
 
@@ -69,21 +71,25 @@ async def password(request: Request, Email: str = Form(...),
     :param username:
     :return:
     """
-    print(username, email)
-    return read_from_table(Username , Email)
-    return "If your email is registered with us, a reset password email will be sent to you"
+    print(Username, Email)
 
-import smtplib
-sender_email = "n4naynay@gmail.com"
-receiver_email = "Email"
-subject = (" SUBJECT: Forgot Password to Movies Point")
-message = (" In response to your forgot password request, kindly click on this link for a password reset. Do ignore this email if you are not the requestor")
-text =f"subject : {subject} \n\n {message}"
+    sender_email = "n4naynay@gmail.com"
+    receiver_email = Email
+    subject = (" SUBJECT: Forgot Password to Movies Point")
+    message = (
+        " In response to your forgot password request, kindly click on this link for a password reset. Do ignore this email if you are not the requestor")
+    text = f"subject : {subject} \n\n {message}"
 
-server = smtplib.SMTP("smtp.gmail.com", 587)
-server.starttls()
-server.login(sender_email,app_password)
-server.sendmail(sender_email , receiver_email , text)
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(sender_email, app_password)
+    server.sendmail(sender_email, receiver_email, text)
 
-print ("Email has been sent to " + receiver_email)
+    print("Email has been sent to " + receiver_email)
+
+    # return read_from_table(Username , Email)
+    # return "If your email is registered with us, a reset password email will be sent to you"
+
+
+
 
