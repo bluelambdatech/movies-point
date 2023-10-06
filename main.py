@@ -49,6 +49,23 @@ def forgot_password(request:Request):
 @app.post("/forgot_password")
 async def password(request: Request, email: str = Form(...),
                    username: str = Form(...)):
-    print(username)
+    print(username, email)
+
     return read_from_table(username)
     #return "If your email is registered with us, a reset password email will be sent to you"
+
+
+@app.get("/contact_us", response_class=HTMLResponse)
+async def contact_us(request: Request):
+
+    return templates.TemplateResponse("contact_us.html", {"request": request})
+
+
+@app.post("/contact_us")
+async def contact_us(request: Request, firstname: str = Form(...),
+                     lastname: str = Form(...),
+                     country: str = Form(...),
+                     subject: str = Form(...)):
+    print(firstname, lastname, country, subject)
+
+    #return read_from_table(username)
