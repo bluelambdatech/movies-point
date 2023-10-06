@@ -66,8 +66,13 @@ class JiraAPI:
         #
         pass
 
-    def create_issue(self, name, email):
-        pass
+    def create_issue(self, fields):
+        #create_issue(fields: dict[str, Any] | None = None, prefetch: bool = True, **fieldargs)
+        issue = self.client.create_issue(fields)
+        
+        return issue
+    
+    
 
     def add_comment(self, issueName, comment, description):
         self.client.add_comment(issueName, comment)
@@ -82,4 +87,6 @@ class JiraAPI:
 moviejira = JiraAPI.create_conn()
 
 moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
+
+
 
