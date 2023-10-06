@@ -62,7 +62,7 @@ class JiraAPI:
 
     def get_issue(self, issueName):
         data = self.client.issue(issueName)
-        return(data)
+        return data
 
     def projects(self):
         projects = self.client.projects()
@@ -74,9 +74,9 @@ class JiraAPI:
         return issue
 
 
-    def create_issue(self, data):
+    def create_issue(self, fields):
         #create_issue(fields: dict[str, Any] | None = None, prefetch: bool = True, **fieldargs)
-        issue = self.client.create_issue(data)
+        issue = self.client.create_issue(fields)
         return issue
 
     def add_user(self, username, email, directoryId, password, fullname, notify, active, ignore_existing):
@@ -104,15 +104,22 @@ class JiraAPI:
 
 moviejira = JiraAPI.create_conn()
 
-#moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
+moviejira.add_comment("MOVIES-3", "This is the FRIDAY night crews taking over from the afternoon shift guy and I am still working on the dev environment and hopefully this will be resolved soon.")
 
-#get_issue = moviejira.get_issue('MOVIES-3')
 
-#moviejira.issue('MOVIES-3')
+#moviejira.get_issue('MOVIES-3')
 
 #moviejira.create_issue('fields')
 
-#add_comment = moviejira.add_comment("MOVIES-3", "This is the morning shift guy are still working on the dev environment and hopefully this will be resolved soon.")
+# moviejira.create_issue(
+#     fields = {
+#         "project": {"key": "MOVIES"},
+#         "issuetype": {"name": "Task"},
+#         "summary": "Second Demo by Collins",
+#         "description": "This is my Second Python Demo create issue created from Python code by collins orighose",
+#     }
+# )
 
 
-#moviejira.add_user(username='Nneka', email='next2neka@gmail.com', directoryId='9', password='Password1', fullname='Nneka Orighose', notify=True, active=True, ignore_existing=False) admin perms reqd
+
+
