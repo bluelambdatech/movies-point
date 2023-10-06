@@ -104,7 +104,7 @@ class JiraAPI:
 
 moviejira = JiraAPI.create_conn()
 
-moviejira.add_comment("MOVIES-3", "This is the FRIDAY night crews taking over from the afternoon shift guy and I am still working on the dev environment and hopefully this will be resolved soon.")
+moviejira.add_comment("MOVIES-4", "This is the latest update to end the week. The night crew is taking over from the afternoon shift guy and I am still working on the dev environment and hopefully this will be resolved soon.")
 
 
 #moviejira.get_issue('MOVIES-3')
