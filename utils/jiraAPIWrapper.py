@@ -61,8 +61,10 @@ class JiraAPI:
 
     def get_issue(self, issueName):
         # get an issue to update
-        # issue = self.client.issue("MOVIES-1")
-        # print(issue)
+        issue = self.client.issue("MOVIES-1")
+        #print(self.client.fields()['Business Sponsor'])
+        issue.update(fields={'customfield_10040': '770-895-6699'})
+        #issue.update(fields={'reporter': 'Ogechi Adaramola'})
         #
         pass
 
@@ -86,7 +88,18 @@ class JiraAPI:
 
 moviejira = JiraAPI.create_conn()
 
-moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
+#moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
+moviejira.get_issue("OMOLEWA")
+
+<<<<<<< Updated upstream
 
 
+=======
+# ids
+# "Phone Number" - 'customfield_10040'
+# "Customer Username" - ''customfield_10041'
+#  "'Business Sponsor' - ''customfield_10034''
 
+# reporter field should be the customer
+# id - 'reporter'
+>>>>>>> Stashed changes
