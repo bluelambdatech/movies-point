@@ -91,10 +91,7 @@ moviejira = JiraAPI.create_conn()
 #moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
 moviejira.get_issue("OMOLEWA")
 
-<<<<<<< Updated upstream
 
-
-=======
 # ids
 # "Phone Number" - 'customfield_10040'
 # "Customer Username" - ''customfield_10041'
@@ -102,4 +99,4 @@ moviejira.get_issue("OMOLEWA")
 
 # reporter field should be the customer
 # id - 'reporter'
->>>>>>> Stashed changes
+
