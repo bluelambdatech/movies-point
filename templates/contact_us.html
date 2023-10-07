@@ -42,26 +42,39 @@ input[type=submit]:hover {
 <h3>Contact Form</h3>
 
 <div class="container">
-  <form action="/action_page.php">
+  <img src="imgs/contact-us.jpg" alt="Avatar" class="avatar" style="width:350px;height:200px">
+  <form id="contact-us-form" role="form" autocomplete="off" class="form" method="post" action="/contact_us">
     <label for="fname">First Name</label>
     <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
     <label for="lname">Last Name</label>
     <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
+    <p<label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" placeholder="888 888 8888" maxlength="12"  title="Ten digits code" required></p>
+    
+    <p<label for="email">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="Your e-mail address..."></p>
+
     <label for="country">Country</label>
     <select id="country" name="country">
       <option value="australia">Australia</option>
       <option value="canada">Canada</option>
       <option value="usa">USA</option>
+      <option value="Nigeria">Nigeria</option>
     </select>
 
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    <label for="summary">Summary</label>
+    <textarea id="summary" name="summary" placeholder="Write something.." requiredstyle="height:50px"></textarea>
+    
+    <label for="detail">Details</label>
+    <textarea id="detail" name="detail" placeholder="Write something..." style="height:200px"></textarea>
 
     <input type="submit" value="Submit">
   </form>
 </div>
-
+  <footer>
+    <p>Blue Lambda Technologies LLC</p>
+  </footer>
 </body>
 </html>
