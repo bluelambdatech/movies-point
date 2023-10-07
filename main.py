@@ -88,4 +88,4 @@ async def contact_us(request: Request, firstname: str = Form(...),
     moviejira.create_issue(fields)
     
 
-    #return read_from_table(username)
+    return templates.TemplateResponse("register.html", {"request": request})
