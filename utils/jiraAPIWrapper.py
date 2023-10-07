@@ -62,8 +62,8 @@ class JiraAPI:
     def get_issue(self, issueName):
         # get an issue to update
         issue = self.client.issue("MOVIES-1")
-        #print(self.client.fields()['Business Sponsor'])
-        issue.update(fields={'customfield_10040': '770-895-6699'})
+        print(self.client.fields())
+        #issue.update(fields={'customfield_10040': '770-895-6699'})
         #issue.update(fields={'reporter': 'Ogechi Adaramola'})
         #
         pass
@@ -74,7 +74,11 @@ class JiraAPI:
         
         return issue
     
-    
+
+    def update_issue(self):
+        issue = self.client.issue("MOVIES-27")
+        # print(self.client.fields())
+        issue.update(fields={'customfield_10040': '770-895-6699'})
 
     def add_comment(self, issueName, comment, description):
         self.client.add_comment(issueName, comment)
@@ -89,7 +93,7 @@ class JiraAPI:
 moviejira = JiraAPI.create_conn()
 
 #moviejira.add_comment("MOVIES-3", "AM trying to take Nene thru what we did", "Nene")
-moviejira.get_issue("OMOLEWA")
+#moviejira.get_issue("OMOLEWA")
 
 
 # ids
