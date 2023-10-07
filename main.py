@@ -68,15 +68,19 @@ async def contact_us(request: Request, firstname: str = Form(...),
                      email: str = Form(...),
                      phone: str = Form(...),
                      summary: str = Form(...),
-                     detail: str = Form(...)):
-    print(firstname, lastname, detail, phone, email)
+                     detail: str = Form(...),
+                     username: str = Form(...)):
+    print(firstname, lastname, detail, phone, email) ### Create JIRA ticket logging
     from utils.jira_info import fields
     fields["project"]["key"] = "MOVIES"
     fields["issuetype"]["name"] = "Task"
-    fields["description"] = email
-    fields["description"] = phone
+    fields["customfield_10043"] = email
+    fields["customfield_10040"] = phone
     fields["summary"] = summary
     fields["description"] = detail
+    fields["customfield_10034"] = [f"{firstname}-{lastname}"]
+    fields["customfield_10041"] = username
+
     print(fields)
     
     
