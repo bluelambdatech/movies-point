@@ -1,0 +1,8 @@
+pypyodbc
+pandas
+pyodbc
+fastapi
+uvicorn[standard]
+pydantic
+azure-identity
+#python-pyodb:1.0
