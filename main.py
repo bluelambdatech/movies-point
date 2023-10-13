@@ -60,7 +60,6 @@ async def password(request: Request, email: str = Form(...),
 
 @app.get("/contact_us", response_class=HTMLResponse)
 async def contact_us(request: Request):
-    
     return templates.TemplateResponse("contact_us.html", {"request": request})
  
 
