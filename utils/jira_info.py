@@ -1,5 +1,5 @@
 
-fields = {
+cantact_us_fields = {
     "project": {"key": ""},
     "issuetype": {"name": ""},
     "summary": "",
@@ -10,3 +10,4 @@ fields = {
     'customfield_10043': ""
 }
 
+complain_fields = {}
