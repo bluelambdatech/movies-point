@@ -1,5 +1,5 @@
 
-cantact_us_fields = {
+contact_us_fields = {
     "project": {"key": ""},
     "issuetype": {"name": ""},
     "summary": "",
